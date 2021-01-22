@@ -1,0 +1,11 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+num_periods = 10
+amp = 10.
+
+x = np.linspace(0, num_periods, num_periods * 100)
+y = amp * np.sin(x)
+
+fig=plt.figure(figsize=[5,5])
+ax = fig.add_axes([.1, .1, .8, .8])
