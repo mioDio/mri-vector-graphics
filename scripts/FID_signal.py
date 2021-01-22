@@ -5,7 +5,7 @@ num_periods = 10
 amp = 10.
 T2 = 10
 
-x = np.linspace(0, num_periods * 2. * np.pi, num_periods * 100)
+x = np.linspace(np.pi/2., num_periods * 2. * np.pi, num_periods * 100)
 y = amp * np.sin(x) * np.exp(-x/T2)
 
 fig=plt.figure(figsize=[5, 5])
