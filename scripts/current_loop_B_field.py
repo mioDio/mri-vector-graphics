@@ -1,0 +1,25 @@
+import magpylib as magpy
+import numpy as np
+from matplotlib import pyplot as plt
+
+# set font size and define figures
+plt.rcParams.update({'font.size': 6})
+
+fig = plt.figure(figsize=[5, 5])
+ax = fig.add_axes([.1,.1,.8,.8])
+
+s = magpy.source.current.Circular(curr=10, dim=5)
+
+# position grid
+ts = np.linspace(-6,6,50)
+posis = np.array([(x,0,z) for z in ts for x in ts])
+X, Y = np.meshgrid(ts,ts)
+
+# plot field on respective axes
+B = np.array([s.getB(p) for p in posis]).reshape(50, 50, 3)
+ax.pcolor(X,Y, np.linalg.norm(B, axis=2),
+          shading='auto',
+          cmap=plt.cm.get_cmap('coolwarm'))
+ax.streamplot(X, Y, B[:,:,0], B[:,:,2], color='k',linewidth=1)
+
+plt.show()
